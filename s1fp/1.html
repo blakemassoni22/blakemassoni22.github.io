@@ -1,7 +1,38 @@
 <head>
     <link rel="stylesheet" href="style.css">
-    </head>
-    <body> 
-    my code! my content
-    <br><a href="index.html">go home</a>
-    </body>
+</head>
+<body> 
+    <div style="position: absolute; top: 1px; left: 15px; z-index: 1; background-color: hwb(236 73% 9% / 0.5); padding:5px; border-radius:20%;">
+        <a href="index.html" class="top-left" style="font-size: 16px; color: white;">go home</a>
+    </div>
+    <div style="position: absolute; top: 1px; right: 15px; z-index: 1; background-color: hwb(236 73% 9% / 0.5); padding:5px; border-radius:20%;">
+        <a href="index.html" class="top-left" style="font-size: 16px; color: white;">next beach</a>
+    </div>
+    <div>
+         Bondi Beach, Auastralia
+    </div>
+</body>
+<style>
+    body {
+        color: white;
+        background-image: url('images/image-asset.jpeg');
+        background-size: cover;
+        background-position: center;
+        padding: 20px;
+        margin: 0;
+
+    }
+    div {
+        margin-top: 30px;
+        background-color: hwb(236 73% 9% / 0.5);
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    div:nth-of-type(3) {
+        border: 2px solid white;
+        padding: 10px;
+    }
+    
+</style>
+<div style="color: white; font-family: 'Georgia', serif; font-size: 14px; font-weight: semi-bold; text-align: center; margin-top: 10px; background-color: transparent; border: none;">Bondi Beach is famous for surfing with waves that can reach up to 4 meters high</div>
