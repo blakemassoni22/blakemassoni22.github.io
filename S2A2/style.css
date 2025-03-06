@@ -1,0 +1,28 @@
+html {
+    background-color: rgb(160, 219, 253);
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.cup-red-cup {
+    display: inline-block;
+}
+
+.cup-red-cup:hover {
+    animation: shake 0.5s;
+}
+
+.cup-blue-cup {
+    display: inline-block;
+}
+
+.cup-blue-cup:hover {
+    animation: shake 0.5s;
+}
+
