@@ -1,0 +1,73 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body> 
+    <h1 style="text-align: center;">Can You Guess Which Cup Is The Hologram?</h1>
+    <div style="display: flex; justify-content: center; gap: 40px;">
+        <div style="position: relative;" onmouseover="this.style.animation='shake 0.5s'; document.getElementById('message2').style.display='block';" onmouseout="this.style.animation=''; document.getElementById('message2').style.display='none';">
+            <div id="message2" style="display: none; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background-color: yellow; padding: 5px; border: 1px solid black; border-radius: 5px;"> Nope!</div>
+            <div style="width: 100px; height: 250px; background: linear-gradient(to bottom, hsl(0, 87%, 55%) 0%, #e33f3f 100%); border-radius: 60% 60% 0 0; margin: 60px auto 0; border: .5px solid #b14646; transform: scaleX(1.5) scaleY(1); box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5), inset 10px 10px 20px rgba(0, 0, 0, 0.5);"></div>
+            <div style="width: 151px; height: 51px; background-color: hsl(0, 11%, 89%); border-radius: 50%; position: absolute; top: 278px; left: calc(49.4% - 75.5px); border: 2px solid #757575; box-shadow: inset 40px -1px 5px rgba(127, 126, 126, 0.5);"></div>
+        </div>
+        <div class="cup red-cup">
+            <div class="cup-top"></div>
+            <div class="cup-bottom"></div>
+    
+        </div>
+    
+        <div style="position: relative;">
+            <div style="position: relative;" onmouseover="this.style.animation='shake 0.5s'; document.getElementById('message3').style.display='block';" onmouseout="this.style.animation=''; document.getElementById('message3').style.display='none';">
+                <div id="message3" style="display: block; position: absolute; top: -70px; left: 30%; transform: translateX(-20%); background-color: yellow; padding: 5px; border: 1px solid black; border-radius: 5px;"> Not this one!</div>
+                <div style="width: 100px; height: 250px; background: linear-gradient(to bottom, hsl(218, 52%, 50%) 0%, #465895 100%); border-radius: 60% 60% 0 0; margin: 60px auto 0; border: .5px solid #2d59b8; transform: scaleX(1.5) scaleY(1); box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5), inset 10px 10px 20px rgba(0, 0, 0, 0.5);"></div>
+                <div style="width: 151px; height: 51px; background-color: hsl(0, 11%, 89%); border-radius: 50%; position: absolute; top: 218px; left: calc(49.4% - 75.5px); border: 2px solid #757575; box-shadow: inset 40px -1px 5px rgba(127, 126, 126, 0.5);"></div>
+            </div>        
+        </div>
+        <div class="cup blue-cup">
+            <div class="cup-top"></div>
+            <div class="cup-bottom"></div>
+        </div>
+
+        <div style="position: relative;">
+            <div style="position: relative;" onmouseover="this.style.animation='shake 0.5s'; document.getElementById('message4').style.display='block';" onmouseout="this.style.animation=''; document.getElementById('message4').style.display='none';">
+                <div id="message4" style="display: block; position: absolute; top: -70px; left: 30%; transform: translateX(-20%); background-color: yellow; padding: 5px; border: 1px solid black; border-radius: 5px;"> Try Again!</div>
+                <div style="width: 100px; height: 250px; background: linear-gradient(to bottom, hsl(0, 87%, 55%) 0%, #efe031 100%); border-radius: 60% 60% 0 0; margin: 60px auto 0; border: .5px solid #afa230; transform: scaleX(1.5) scaleY(1); box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5), inset 10px 10px 20px rgba(0, 0, 0, 0.5);"></div>
+                <div style="width: 151px; height: 51px; background-color: hsl(0, 11%, 89%); border-radius: 50%; position: absolute; top: 221px; left: calc(49.4% - 75px); border: 2px solid #757575; box-shadow: inset 40px -1px 5px rgba(127, 126, 126, 0.5);"></div>
+            </div> 
+        </div>       
+        <div class="cup sunset-cup">
+            <div class="cup-top"></div>
+            <div class="cup-bottom"></div>
+        </div>
+        <div style="position: relative;">
+            <div style="position: relative;" onmouseover="this.style.animation='shake 0.5s'; this.style.opacity='0'; document.getElementById('message5').style.display='block';" onmouseout="this.style.animation=''; this.style.opacity='1'; document.getElementById('message5').style.display='none';">
+                <div id="message5" style="display: none; position: absolute; top: -70px; left: 30%; transform: translateX(-20%); background-color: yellow; padding: 5px; border: 1px solid black; border-radius: 5px;"> YOU GOT IT!</div>
+                <div style="width: 100px; height: 250px; background: linear-gradient(to bottom, hsl(122, 87%, 55%) 0%, #efe031 100%); border-radius: 60% 60% 0 0; margin: 60px auto 0; border: .5px solid #18b922; transform: scaleX(1.5) scaleY(1); box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5), inset 10px 10px 20px rgba(0, 0, 0, 0.5);"></div>
+                <div style="width: 151px; height: 51px; background-color: hsl(0, 11%, 89%); border-radius: 50%; position: absolute; top: 218px; left: calc(49.4% - 75.5px); border: 2px solid #757575; box-shadow: inset 40px -1px 5px rgba(127, 126, 126, 0.5);"></div>
+                
+            <div style="position: relative;" onmouseover="this.style.animation='shake 0.5s'; this.style.opacity='0'; setTimeout(function() { document.getElementById('ball').style.display = 'block'; }, 500);" onmouseout="this.style.animation=''; this.style.opacity='1'; document.getElementById('ball').style.display = 'none';">
+                <div id="ball" style="display: none; width: 40px; height: 40px; background: hsl(0, 62%, 91%); border-radius: 50%; position: absolute; top: 218px; left: calc(49.4% - 20px); border: 2px solid #7e7878; box-shadow: inset 40px -1px 5px rgba(246, 241, 241, 0.5);"></div>
+                </div>
+            </div>
+        
+        </div>
+        <div class="cup green-cup">
+            <div class="cup-top"></div>
+            <div class="cup-bottom"></div>
+        </div>
+        <div style="position: relative;">
+            <div style="position: relative;" onmouseover="this.style.animation='shake 0.5s'; document.getElementById('message6').style.display='block';" onmouseout="this.style.animation=''; document.getElementById('message6').style.display='none';">
+                <div id="message6" style="display: block; position: absolute; top: -70px; left: 30%; transform: translateX(-20%); background-color: yellow; padding: 5px; border: 1px solid black; border-radius: 5px;"> SO CLOSE!</div>
+                <div style="width: 100px; height: 250px; background: linear-gradient(to bottom, hsl(295, 87%, 55%) 0%, #efe031 100%); border-radius: 60% 60% 0 0; margin: 60px auto 0; border: .5px solid #18b922; transform: scaleX(1.5) scaleY(1); box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5), inset 10px 10px 20px rgba(0, 0, 0, 0.5);"></div>
+                <div style="width: 151px; height: 51px; background-color: hsl(0, 11%, 89%); border-radius: 50%; position: absolute; top: 218px; left: calc(49.4% - 75.5px); border: 2px solid #757575; box-shadow: inset 40px -1px 5px rgba(127, 126, 126, 0.5);"></div>
+            </div>
+        </div>
+        <div class="cup purple-cup">
+            <div class="cup-top"></div>
+            <div class="cup-bottom"></div>
+        </div>
+    </div>
+        <script>
+        </script>
+    </body>
+    </html>
+      
