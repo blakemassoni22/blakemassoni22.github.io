@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CNBC Reminder Tool</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      background-color: #96aef3; /* Light blue background */
+    }
+  </style>
+</head>
+<body>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <h1 style="font-family: 'Verdana', sans-serif; font-size: 48px; font-weight: bold; color: #ffffff; margin: 0; text-shadow: 2px 2px 5px black;">
+      CNBC Business Reminders
+    </h1>
+    <div style="text-align: center; margin-top: 10px; font-family: 'Verdana', sans-serif; font-size: 20px; font-weight: bold; color: #ffffff; border: 2px solid #d2d4df; padding: 10px; border-radius: 10px; background-color: #7474d2;">
+      Have You Ever Missed a CNBC Business Story and Wished For a Reminder to Read it Later?
+    </div>
+    </div>
+
+
+  <!-- Blurb Section (including icons) -->
+  <section class="blurb" style="background-color: #7f8de2; border-radius: 15px; padding: 20px; box-shadow: 0 4px 6px rgba(128, 58, 58, 0.1); text-align: center; max-width: 600px; margin: 50px auto;">
+    <h1 style="font-family: 'Verdana', sans-serif; font-size: 28px; font-weight: bold; color: #ffffff; text-shadow: 3px 3px 10px black; text-transform: uppercase; letter-spacing: 2px;">
+      Introducing Our CNBC Reminders Applet 
+    </h1>
+    <p style="font-size: 16px; font-family: 'Verdana', sans-serif; color: #e0e0ff;">
+      <span style="font-size: 20px; font-weight: bold; text-shadow: 2px 2px 5px rgb(169, 169, 169); font-family: 'Verdana', sans-serif; color: #ffffff;">
+       Get instant alerts whenever a new "Business" story breaks.
+      </span>
+    <div style="text-align: center; margin-top: 20px; display: flex; justify-content: center; gap: 20px;">
+      <img src="/cnbc icons.png" alt="CNBC Logo" style="max-width: 150px; height: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;" 
+           onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 8px rgba(0, 0, 0, 0.2)';" 
+           onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.1)';">
+      <img src="/reminders icon.png" alt="Reminders Icon" style="max-width: 150px; height: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease;" 
+           onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 8px rgba(0, 0, 0, 0.2)';" 
+           onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 6px rgba(0, 0, 0, 0.1)';">
+    </div>
+  </section>
+
+
+<!-- App Intro -->
+<section class="intro" style="background-color: #7f8de2; border-radius: 15px; padding: 20px; box-shadow: 0 4px 6px rgba(128, 58, 58, 0.1); text-align: center; max-width: 600px; margin: 50px auto;">     
+    <h2 style="font-family: 'Verdana', sans-serif; font-size: 28px; font-weight: bold; color: #ffffff; text-shadow: 3px 3px 10px black; text-transform: uppercase; letter-spacing: 2px;">
+How It Works:    </h2>
+    <p style="font-size: 16px; font-family: 'Verdana', sans-serif; color: #e0e0ff;">
+      <span style="font-size: 20px; font-weight: bold; text-shadow: 2px 2px 5px rgb(169, 169, 169); font-family: 'Verdana', sans-serif; color: #ffffff;">
+        This tool tracks new stories published in CNBC's "Business" category and automatically adds a reminder to your iOS reminders app for you to check them out.
+      </span>
+    </p>
+    
+    <p style="font-size: 16px;">
+      <span style="font-size: 22px; font-family: 'Verdana', sans-serif; color: #ededf0;">
+        Stay up to date on your news, on your time. No need to keep refreshing the page!
+      </span>
+    </p>
+      
+    <a href="https://ifttt.com/applets/ufV65Q4y-if-a-new-story-drops-on-cnbc-in-business-add-a-reminder-to-the-reminders-app" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #3a61bd; color: white; text-decoration: none; font-size: 16px; font-weight: bold; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); font-family: 'Verdana', sans-serif; transition: background-color 0.3s ease, transform 0.3s ease;" 
+       onmouseover="this.style.backgroundColor='#2a4a8d'; this.style.transform='scale(1.05)';" 
+       onmouseout="this.style.backgroundColor='#3a61bd'; this.style.transform='scale(1)';">
+      CONNECT NOW
+    </a>
+</section>
+<div style="text-align: center; margin-top: 20px; position: relative; display: flex; align-items: center; justify-content: center; gap: 20px;">
+  <img src="IMG_1A6E3F986FD8-1.jpeg" alt="News Reminder Tool" style="max-width: 300px; height: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="#7f8de2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="1" y1="12" x2="19" y2="12"></line>
+    <polyline points="12 5 19 12 12 19"></polyline>
+  </svg>
+  <img src="IMG_5798.jpg" alt="News Reminder Tool" style="max-width: 300px; height: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+</div>
+<div style="text-align: center; margin-top: 20px; position: relative; display: flex; align-items: center; justify-content: center; gap: 20px;">
+  <img src="IMG_5799.jpg" alt="News Reminder Tool" style="max-width: 300px; height: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="#7f8de2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="1" y1="12" x2="19" y2="12"></line>
+    <polyline points="12 5 19 12 12 19"></polyline>
+  </svg>
+  <img src="/BUSINESS.png" alt="News Reminder Tool" style="max-width: 300px; height: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+</div>
