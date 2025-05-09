@@ -1,0 +1,125 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: rgb(196, 236, 255);
+        }
+
+        .iphone {
+            width: 360px;
+            height: 730px;
+            background-color: rgb(119, 110, 110);
+            border-radius: 50px;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 8px rgba(142, 138, 138, 0.2);
+            border: 10px solid rgb(87, 84, 84);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .screen-box, .screen-box-2, .screen-box-3, .screen-box-4 {
+            width: 289px;
+            height: 130px;        
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 0;
+            background-color: rgb(206, 192, 192);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            overflow: hidden;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .screen-box {
+            top: 5%;
+            margin-top: 5;
+        }
+
+        .screen-box-2 {
+            top: 25%;
+            margin-top : 15;
+        }
+
+        .screen-box-3 {
+            top: 45%;
+            margin-top: 30;
+        }
+
+        .screen-box-4 {
+            top: 65%;
+            margin-top: 45;
+        }
+
+        .screen-box:hover,
+        .screen-box-2:hover,
+        .screen-box-3:hover,
+        .screen-box-4:hover {
+            background-color: rgb(230, 244, 255);
+            transform: scale(1.05);
+        }
+
+        .screen-box-2 img, .screen-box-3 img, .screen-box-4 img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 28px solid transparent;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .screen-box-2 img:hover, .screen-box-3 img:hover, .screen-box-4 img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body> 
+  
+    <div class="iphone" style="background-image: url('IMG_9DFDA89BFC2A-1.jpeg'); background-size: cover; background-position: center;">
+    </div>
+    <div class="iphone">
+        <style>
+            .iphone {
+                background-image: url('IMG_6872.JPG');
+                background-size: cover;
+                background-position: center;
+            }
+        </style>
+        <div class="screen-box">
+            <img src="IMG_93AEA1FEB940-1.jpeg" alt="Image on iPhone screen" style="display: block; width: 100%; height: auto; transition: transform 0.3s ease;">
+        </div>
+        <div class="screen-box-2">
+            <img src="ChatGPT Image Apr 20, 2025, 06_09_52 PM.png" alt="Image on iPhone screen">
+            </a>
+        </div>
+        <div class="screen-box-3">
+            <img src="ChatGPT Image Apr 20, 2025, 05_42_08 PM.png" alt="Image on iPhone screen">
+        </div>
+        <div class="screen-box-4">
+            <img src="Screen Shot 2025-04-17 at 11.56.08 AM.png" alt="Image on iPhone screen">
+        </div>
+    </div>
+    <script>
+        document.querySelector('.screen-box-2').addEventListener('click', () => {
+            window.location.href = 'Mystercup.html';
+        });
+    </script>
+     <script>
+        document.querySelector('.screen-box-3').addEventListener('click', () => {
+            window.location.href = 'sectionassign.html';
+        });
+    </script>
+       <script>
+        document.querySelector('.screen-box-4').addEventListener('click', () => {
+            window.location.href = 'readingscroll.html';
+        });
+    </script>
+
+
