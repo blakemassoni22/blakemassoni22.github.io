@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blake Massoni - UX/UI Designer</title>
+<meta name="description" content="Blake Massoni - UX/UI Designer Portfolio">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+  :root {
+    --google-blue: #4285f4;
+    --google-red: #ea4335;
+    --google-yellow: #fbbc04;
+    --google-green: #34a853;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --border-color: #dfe1e5;
+    --hover-bg: #f8f9fa;
+    --shadow-sm: 0 1px 6px rgba(32,33,36,.28);
+    --shadow-md: 0 2px 8px rgba(32,33,36,.28);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    background: #fff;
+    color: var(--text-primary);
+    height: 100%;
+  }
+
+  /* Top Navigation */
+  .top-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 14px 20px;
+    gap: 20px;
+  }
+
+  .top-nav a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 13px;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+  }
+
+  .top-nav a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .apps-menu {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .apps-menu:hover {
+    background-color: rgba(0,0,0,0.04);
+  }
+
+  .apps-icon {
+    width: 20px;
+    height: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 6px);
+    grid-gap: 1px;
+    opacity: 0.6;
+  }
+
+  .apps-icon span {
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-secondary);
+    border-radius: 1px;
+  }
+
+  .profile-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--google-blue), var(--google-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .profile-avatar:hover {
+    transform: scale(1.05);
+  }
+
+  /* Main Content */
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 200px);
+    padding: 20px;
+    text-align: center;
+  }
+
+  /* Logo */
+  .logo {
+    font-size: 5.5rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+    letter-spacing: -5px;
+    user-select: none;
+    font-family: 'Product Sans', 'Roboto', Arial, sans-serif;
+  }
+
+  .logo span:nth-child(1) { color: var(--google-blue); }
+  .logo span:nth-child(2) { color: var(--google-red); }
+  .logo span:nth-child(3) { color: var(--google-yellow); }
+  .logo span:nth-child(4) { color: var(--google-blue); }
+  .logo span:nth-child(5) { color: var(--google-green); }
+  .logo span:nth-child(6) { color: var(--google-red); }
+  .logo span:nth-child(7) { color: var(--google-yellow); }
+  .logo span:nth-child(8) { color: var(--google-blue); }
+  .logo span:nth-child(9) { color: var(--google-green); }
+  .logo span:nth-child(10){ color: var(--google-red); }
+  .logo span:nth-child(11){ color: var(--google-yellow); }
+  .logo span:nth-child(12){ color: var(--google-blue); }
+
+  .tagline {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+    font-weight: 400;
+  }
+
+  /* Search Container */
+  .search-container {
+    width: 100%;
+    max-width: 584px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  /* Search Box */
+  .search-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 0 20px;
+    height: 46px;
+    box-shadow: var(--shadow-sm);
+    background-color: #fff;
+    position: relative;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .search-box:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .search-box:focus-within {
+    box-shadow: var(--shadow-md);
+    border-color: transparent;
+  }
+
+  .search-icon {
+    color: #9aa0a6;
+    font-size: 18px;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 10px 0;
+    color: var(--text-primary);
+    font-family: 'Roboto', Arial, sans-serif;
+  }
+
+  .search-box input::placeholder {
+    color: #9aa0a6;
+  }
+
+  .search-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .search-actions i {
+    color: var(--google-blue);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+  }
+
+  .search-actions i:hover {
+    background-color: rgba(0,0,0,0.04);
+  }
+
+  /* Autocomplete Suggestions */
+  .suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 24px;
+    box-shadow: var(--shadow-md);
+    margin-top: 8px;
+    overflow: hidden;
+    display: none;
+    z-index: 1000;
+  }
+
+  .suggestions.active {
+    display: block;
+  }
+
+  .suggestion-item {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+  }
+
+  .suggestion-item:hover {
+    background-color: var(--hover-bg);
+  }
+
+  .suggestion-item i {
+    color: #9aa0a6;
+    font-size: 16px;
+  }
+
+  .suggestion-text {
+    color: var(--text-primary);
+    font-size: 14px;
+  }
+
+  /* Buttons */
+  .buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 10px 24px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: var(--hover-bg);
+    cursor: pointer;
+    color: var(--text-primary);
+    transition: all 0.1s;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 400;
+    min-width: 120px;
+    height: 36px;
+  }
+
+  .btn:hover {
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    background-color: #f8f9fa;
+    border: 1px solid #dadce0;
+  }
+
+  .btn:focus {
+    outline: none;
+    border: 1px solid var(--google-blue);
+  }
+
+  /* Typing animation for placeholder */
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .search-box input.typing::after {
+    content: '|';
+    animation: blink 1s infinite;
+  }
+
+  /* Footer */
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f2f2f2;
+    border-top: 1px solid #e4e4e4;
+    padding: 15px 0;
+    text-align: center;
+  }
+
+  .footer-text {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .logo {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    .search-container {
+      max-width: 90%;
+    }
+
+    .buttons {
+      padding: 0 20px;
+    }
+
+    .top-nav {
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .top-nav a {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .logo {
+      font-size: 2.5rem;
+      letter-spacing: -3px;
+    }
+
+    .search-box {
+      height: 42px;
+      padding: 0 15px;
+    }
+
+    .btn {
+      font-size: 13px;
+      padding: 8px 16px;
+      min-width: 100px;
+    }
+  }
+
+  /* Loading Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .content > * {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .logo {
+    animation-delay: 0.1s;
+  }
+
+  .search-container {
+    animation-delay: 0.2s;
+  }
+
+  .buttons {
+    animation-delay: 0.3s;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <div class="top-nav">
+    <a href="Aboutme.html">About</a>
+    <a href="resume.html">Resume</a>
+    <a href="projects.html">Projects</a>
+    <div class="apps-menu" title="Google apps">
+      <div class="apps-icon">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="profile-avatar" title="Blake Massoni">B</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <div class="logo">
+      <span>B</span><span>l</span><span>a</span><span>k</span><span>e</span>
+      <span>M</span><span>a</span><span>s</span><span>s</span><span>o</span><span>n</span><span>i</span>
+    </div>
+
+    <div class="tagline"> Entry-Level  UX/UI Designer & Creative Problem Solver</div>
+
+    <div class="search-container">
+      <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="search-input" placeholder='Try "projects"' autocomplete="off">
+        <div class="search-actions">
+          <i class="fas fa-microphone" title="Search by voice"></i>
+          <i class="fas fa-camera" title="Search by image"></i>
+        </div>
+      </div>
+
+      <!-- Autocomplete Suggestions -->
+      <div class="suggestions" id="suggestions">
+        <div class="suggestion-item" data-query="about me">
+          <i class="fas fa-search"></i>
+          <span class="suggestion-text">about me</span>
+        </div>
+        <div class="suggestion-item" data-query="projects">
+          <i class="fas fa-search"></i>
+          <span class="suggestion-text">projects</span>
+        </div>
+        <div class="suggestion-item" data-query="resume">
+          <i class="fas fa-search"></i>
+          <span class="suggestion-text">resume</span>
+        </div>
+        <div class="suggestion-item" data-query="ux design work">
+          <i class="fas fa-search"></i>
+          <span class="suggestion-text">ux design work</span>
+        </div>
+        <div class="suggestion-item" data-query="ui portfolio">
+          <i class="fas fa-search"></i>
+          <span class="suggestion-text">ui portfolio</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button class="btn" id="google-search">Google Search</button>
+      <button class="btn" id="feeling-creative">I'm Feeling Creative</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-text">&copy; 2025 Blake Massoni – My Portfolio</div>
+  </div>
+
+  <script>
+    // Search functionality
+    const searchInput = document.getElementById('search-input');
+    const suggestions = document.getElementById('suggestions');
+    const googleSearchBtn = document.getElementById('google-search');
+    const feelingCreativeBtn = document.getElementById('feeling-creative');
+
+    // Search mapping
+    const searchMap = [
+      { keywords: ['home', 'homepage', 'back home', 'main'], page: "googleHomepage.html" },
+      { keywords: ['about me', 'aboutme', 'about-me', 'about', 'me', 'about blake', 'who', 'bio'], page: "Aboutme.html" },
+      { keywords: ['projects', 'work', 'portfolio', 'blakes projects', 'my projects', 'blake projects', "blake's projects", 'ux', 'ui', 'design'], page: "projects.html" },
+      { keywords: ['skills', "blake's skills", 'resume', 'experience', 'experiences', "blake's resume", 'cv', 'credentials'], page: "resume.html" }
+    ];
+
+    // Rotating placeholder text
+    const placeholders = [
+      'Search my portfolio...',
+      'Try "projects"',
+      'Try "about me"',
+      'Try "resume"',
+      'Try "ux design work"',
+      'Try "ui portfolio"'
+    ];
+
+    let currentPlaceholderIndex = 0;
+    let isUserTyping = false;
+
+    function rotatePlaceholder() {
+      if (!isUserTyping && searchInput.value.trim() === '') {
+        currentPlaceholderIndex = (currentPlaceholderIndex + 1) % placeholders.length;
+        searchInput.placeholder = placeholders[currentPlaceholderIndex];
+      }
+    }
+
+    // Rotate placeholder every 3 seconds
+    setInterval(rotatePlaceholder, 3000);
+
+    // Track if user is typing
+    searchInput.addEventListener('focus', function() {
+      isUserTyping = true;
+    });
+
+    searchInput.addEventListener('blur', function() {
+      setTimeout(() => {
+        if (searchInput.value.trim() === '') {
+          isUserTyping = false;
+        }
+      }, 200);
+    });
+
+    // Show suggestions on focus
+    searchInput.addEventListener('focus', function() {
+      if (searchInput.value.trim() === '') {
+        suggestions.classList.add('active');
+      }
+    });
+
+    // Hide suggestions on blur (with delay for click)
+    searchInput.addEventListener('blur', function() {
+      setTimeout(() => {
+        suggestions.classList.remove('active');
+      }, 200);
+    });
+
+    // Filter suggestions based on input
+    searchInput.addEventListener('input', function() {
+      const query = searchInput.value.trim().toLowerCase();
+
+      if (query === '') {
+        suggestions.classList.add('active');
+      } else {
+        const suggestionItems = suggestions.querySelectorAll('.suggestion-item');
+        let hasVisibleSuggestion = false;
+
+        suggestionItems.forEach(item => {
+          const text = item.querySelector('.suggestion-text').textContent.toLowerCase();
+          if (text.includes(query)) {
+            item.style.display = 'flex';
+            hasVisibleSuggestion = true;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        suggestions.classList.toggle('active', hasVisibleSuggestion);
+      }
+    });
+
+    // Click suggestion
+    suggestions.addEventListener('click', function(e) {
+      const suggestionItem = e.target.closest('.suggestion-item');
+      if (suggestionItem) {
+        const query = suggestionItem.getAttribute('data-query');
+        searchInput.value = query;
+        suggestions.classList.remove('active');
+        performSearch(query);
+      }
+    });
+
+    // Perform search
+    function performSearch(query) {
+      const searchQuery = query.toLowerCase();
+      let matched = false;
+
+      for (let i = 0; i < searchMap.length; i++) {
+        if (searchMap[i].keywords.some(k => searchQuery.includes(k.toLowerCase()))) {
+          window.location.href = searchMap[i].page;
+          matched = true;
+          break;
+        }
+      }
+
+      if (!matched) {
+        // Show a Google-style "no results" page or alert
+        const confirmNavigation = confirm(`No exact match found for "${query}". Would you like to view all projects?`);
+        if (confirmNavigation) {
+          window.location.href = "projects.html";
+        }
+      }
+    }
+
+    // Enter key search
+    searchInput.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        const query = searchInput.value.trim();
+        if (query) {
+          performSearch(query);
+        }
+      }
+    });
+
+    // Google Search button
+    googleSearchBtn.addEventListener('click', function() {
+      const query = searchInput.value.trim();
+      if (query) {
+        performSearch(query);
+      } else {
+        window.location.href = "projects.html";
+      }
+    });
+
+    // I'm Feeling Creative button (random page)
+    feelingCreativeBtn.addEventListener('click', function() {
+      const pages = ["projects.html", "Aboutme.html", "resume.html"];
+      const randomPage = pages[Math.floor(Math.random() * pages.length)];
+      window.location.href = randomPage;
+    });
+
+    // Click outside to close suggestions
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.search-container')) {
+        suggestions.classList.remove('active');
+      }
+    });
+
+    // Voice search (placeholder functionality)
+    document.querySelector('.fa-microphone').addEventListener('click', function() {
+      alert('Voice search coming soon! For now, please type your query.');
+    });
+
+    // Image search (placeholder functionality)
+    document.querySelector('.fa-camera').addEventListener('click', function() {
+      alert('Image search coming soon! For now, please type your query.');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direct Chef App | Blake Massoni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --google-blue: #4285f4;
+    --google-red: #ea4335;
+    --google-yellow: #fbbc04;
+    --google-green: #34a853;
+    --app-blue: #5B9FED;
+    --app-blue-dark: #4A8AD8;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --text-light: #70757a;
+    --border-color: #e8eaed;
+    --hover-bg: #f8f9fa;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.1);
+    --shadow-md: 0 2px 8px rgba(0,0,0,.08);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background: #ffffff;
+    color: var(--text-primary);
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Top Bar */
+  .topbar {
+    height: 64px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .google-logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .google-logo span:nth-child(1) { color: var(--google-blue); }
+  .google-logo span:nth-child(2) { color: var(--google-red); }
+  .google-logo span:nth-child(3) { color: var(--google-yellow); }
+  .google-logo span:nth-child(4) { color: var(--google-blue); }
+  .google-logo span:nth-child(5) { color: var(--google-green); }
+  .google-logo span:nth-child(6) { color: var(--google-red); }
+  .google-logo span:nth-child(7) { color: var(--google-yellow); }
+  .google-logo span:nth-child(8) { color: var(--google-blue); }
+  .google-logo span:nth-child(9) { color: var(--google-green); }
+  .google-logo span:nth-child(10) { color: var(--google-red); }
+  .google-logo span:nth-child(11) { color: var(--google-yellow); }
+  .google-logo span:nth-child(12) { color: var(--google-blue); }
+
+  .page-title {
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .topbar-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 12px;
+  }
+
+  .back-btn {
+    padding: 8px 20px;
+    background: var(--app-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .back-btn:hover {
+    background: var(--app-blue-dark);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 60px 24px 50px;
+    background: #ffffff;
+    margin: 0;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  .hero .app-name {
+    color: var(--app-blue);
+    font-weight: 500;
+  }
+
+  .hero-description {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+  }
+
+  .tags {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    padding: 6px 16px;
+    background: var(--hover-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+  }
+
+  .tag:hover {
+    background: #e8f0fe;
+    border-color: var(--app-blue);
+    color: var(--app-blue);
+  }
+
+  /* Scroll Hint */
+  .scroll-hint {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 13px;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    animation: bounce 2s infinite;
+    font-weight: 400;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+  }
+
+  .scroll-hint::after {
+    content: '→';
+    font-size: 20px;
+  }
+
+  /* Screens Container */
+  .screens-section {
+    padding: 40px 0 60px;
+    background: #fafafa;
+  }
+
+  .screens-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 32px;
+    padding: 20px 80px 80px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+
+  .screens-container::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .screens-container::-webkit-scrollbar-track {
+    background: #e8eaed;
+    border-radius: 4px;
+    margin: 0 24px;
+  }
+
+  .screens-container::-webkit-scrollbar-thumb {
+    background: #bdc1c6;
+    border-radius: 4px;
+  }
+
+  .screens-container::-webkit-scrollbar-thumb:hover {
+    background: #9aa0a6;
+  }
+
+  /* Screen Card */
+  .screen-card {
+    flex: 0 0 auto;
+    width: 340px;
+    scroll-snap-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease-out forwards;
+    text-align: center;
+  }
+
+  .screen-card:nth-child(1) { animation-delay: 0.1s; }
+  .screen-card:nth-child(2) { animation-delay: 0.2s; }
+  .screen-card:nth-child(3) { animation-delay: 0.3s; }
+  .screen-card:nth-child(4) { animation-delay: 0.4s; }
+  .screen-card:nth-child(5) { animation-delay: 0.5s; }
+  .screen-card:nth-child(6) { animation-delay: 0.6s; }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .phone-frame {
+    position: relative;
+    transition: transform 0.4s ease, filter 0.4s ease;
+    border-radius: 32px;
+    overflow: hidden;
+  }
+
+  .phone-frame:hover {
+    transform: translateY(-12px) scale(1.02);
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+  }
+
+  .screen-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 12px 24px rgba(0,0,0,0.2));
+    transition: transform 0.4s ease;
+  }
+
+  .phone-frame:hover .screen-image {
+    transform: scale(1.05);
+  }
+
+  .screen-number {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+  }
+
+  /* Features Section */
+  .features-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px;
+    background: #ffffff;
+  }
+
+  .features-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: var(--text-primary);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .feature-card:hover {
+    border-color: var(--app-blue);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 0 auto 16px;
+    background: #e8f0fe;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover .feature-icon {
+    transform: scale(1.1);
+    background: var(--app-blue);
+  }
+
+  .feature-title {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+  }
+
+  .feature-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Reflection Section */
+  .reflection-section {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px) saturate(150%);
+    -webkit-backdrop-filter: blur(15px) saturate(150%);
+    padding: 70px 24px;
+    margin: 80px 24px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .reflection-content {
+    max-width: 750px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .reflection-title {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .reflection-text {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero {
+      margin: 24px 16px;
+      padding: 60px 20px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+    }
+
+    .hero-description {
+      font-size: 16px;
+    }
+
+    .screens-container {
+      padding: 20px 24px 60px;
+    }
+
+    .screen-card {
+      width: 280px;
+    }
+
+    .features-section {
+      padding: 60px 20px;
+    }
+
+    .features-title {
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    .features-grid {
+      gap: 24px;
+    }
+
+    .reflection-section {
+      margin: 60px 16px 24px;
+      padding: 60px 20px;
+    }
+
+    .reflection-title {
+      font-size: 26px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="logo-section">
+      <div class="google-logo">
+        <span>B</span><span>l</span><span>a</span><span>k</span><span>e</span><span>M</span><span>a</span><span>s</span><span>s</span><span>o</span><span>n</span><span>i</span>
+      </div>
+      <span class="page-title">Mobile App Showcase</span>
+    </div>
+    <div class="topbar-actions">
+      <a href="googleHomepage.html" class="back-btn">Back to Search</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>My First Figma Mobile App Design: <span class="app-name">Direct Chef</span></h1>
+    <p class="hero-description">
+      A personalized meal-prep and recipe tutorial app designed to make cooking intuitive and enjoyable.
+      This project taught me the fundamentals of mobile UI design, user flow, and component consistency.
+    </p>
+    <div class="tags">
+      <span class="tag">Mobile Design</span>
+      <span class="tag">UI/UX</span>
+      <span class="tag">Recipe App</span>
+      <span class="tag">First Project</span>
+    </div>
+    <div class="scroll-hint">Scroll to explore screens</div>
+  </div>
+
+  <!-- Screens Section -->
+  <div class="screens-section">
+    <div class="screens-container">
+      <div class="screen-card">
+        <div class="phone-frame">
+          <img src="Screen_Shot_2025-10-28_at_5.06.53_PM-removebg-preview.png" alt="Screen 1" class="screen-image">
+        </div>
+        <div class="screen-number">Screen 1</div>
+      </div>
+
+      <div class="screen-card">
+        <div class="phone-frame">
+          <img src="Screen_Shot_2025-10-28_at_5.07.24_PM-removebg-preview.png" alt="Screen 2" class="screen-image">
+        </div>
+        <div class="screen-number">Screen 2</div>
+      </div>
+
+      <div class="screen-card">
+        <div class="phone-frame">
+          <img src="Screen_Shot_2025-10-28_at_5.07.34_PM-removebg-preview.png" alt="Screen 3" class="screen-image">
+        </div>
+        <div class="screen-number">Screen 3</div>
+      </div>
+
+      <div class="screen-card">
+        <div class="phone-frame">
+          <img src="Screen_Shot_2025-10-28_at_5.07.42_PM-removebg-preview.png" alt="Screen 4" class="screen-image">
+        </div>
+        <div class="screen-number">Screen 4</div>
+      </div>
+
+      <div class="screen-card">
+        <div class="phone-frame">
+          <img src="Screen_Shot_2025-10-28_at_5.07.49_PM-removebg-preview.png" alt="Screen 5" class="screen-image">
+        </div>
+        <div class="screen-number">Screen 5</div>
+      </div>
+
+      <div class="screen-card">
+        <div class="phone-frame">
+          <img src="Screen_Shot_2025-10-28_at_5.07.58_PM-removebg-preview.png" alt="Screen 6" class="screen-image">
+        </div>
+        <div class="screen-number">Screen 6</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="features-section">
+    <h2 class="features-title">Key Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3 class="feature-title">Intuitive Navigation</h3>
+        <p class="feature-description">Simple, clean interface that makes finding recipes effortless</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🍳</div>
+        <h3 class="feature-title">Step-by-Step Guides</h3>
+        <p class="feature-description">Clear cooking instructions with visual aids for every recipe</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <h3 class="feature-title">Personalized Content</h3>
+        <p class="feature-description">Tailored recipe recommendations based on your preferences</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <h3 class="feature-title">Meal Planning</h3>
+        <p class="feature-description">Organize your weekly meals with smart planning tools</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reflection Section -->
+<div class="reflection-section">
+  <div class="reflection-content">
+    <h2 class="reflection-title">Design Reflection</h2>
+    <p class="reflection-text" style="font-size:19px; color:#8a8a8a;">
+      Looking back at this first project, I'd refocus on ensuring consistent layout patterns,
+      scalable components, and emotional cohesion throughout the user journey. This project taught me
+      the importance of maintaining visual hierarchy and creating a seamless, minimal design that
+      prioritizes user needs above all else.
+    </p>
+  </div>
+</div>
+
+
+
+  <script>
+    // Intersection Observer for scroll animations
+    const screenCards = document.querySelectorAll('.screen-card');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    screenCards.forEach(card => observer.observe(card));
+  </script>
+
+</body>
+</html>

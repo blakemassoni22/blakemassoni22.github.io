@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Spread of Activation | Blake Massoni</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .google-logo span:nth-child(5) {
+    margin-right: 4px; /* Add space between Blake and Massoni */
+  }
+</style>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --google-blue: #4285f4;
+    --google-red: #ea4335;
+    --google-yellow: #fbbc04;
+    --google-green: #34a853;
+    --text-primary: #202124;
+    --text-secondary: #5f6368;
+    --border-color: #dfe1e5;
+    --hover-bg: #f8f9fa;
+  }
+
+  html, body {
+    height: 100%;
+    font-family: 'Roboto', Arial, sans-serif;
+    background: #fff;
+    color: var(--text-primary);
+  }
+
+  /* Top Bar */
+  .topbar {
+    height: 64px;
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .google-logo {
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -1px;
+  }
+
+  .google-logo span:nth-child(1) { color: var(--google-blue); }
+  .google-logo span:nth-child(2) { color: var(--google-red); }
+  .google-logo span:nth-child(3) { color: var(--google-yellow); }
+  .google-logo span:nth-child(4) { color: var(--google-blue); }
+  .google-logo span:nth-child(5) { color: var(--google-green); }
+  .google-logo span:nth-child(6) { color: var(--google-red); }
+  .google-logo span:nth-child(7) { color: var(--google-yellow); }
+  .google-logo span:nth-child(8) { color: var(--google-blue); }
+  .google-logo span:nth-child(9) { color: var(--google-green); }
+  .google-logo span:nth-child(10) { color: var(--google-red); }
+  .google-logo span:nth-child(11) { color: var(--google-yellow); }
+  .google-logo span:nth-child(12) { color: var(--google-blue); }
+
+  .page-title {
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .back-btn {
+    margin-left: auto;
+    padding: 8px 20px;
+    background: var(--google-blue);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+  }
+
+  .back-btn:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  /* Hero */
+  .hero {
+    padding: 48px 24px;
+    text-align: center;
+    background: linear-gradient(180deg, #f8f9fa 0%, #fff 100%);
+  }
+
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+  }
+
+  .definition-card {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 32px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    text-align: left;
+  }
+
+  .definition-card h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: var(--google-blue);
+  }
+
+  .definition-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-primary);
+  }
+
+  /* Interactive Section */
+  .interactive-section {
+    padding: 48px 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .section-header h2 {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .section-header p {
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 24px;
+  }
+
+  .tab {
+    padding: 12px 24px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+  }
+
+  .tab:hover {
+    color: var(--google-blue);
+  }
+
+  .tab.active {
+    color: var(--google-blue);
+    border-bottom-color: var(--google-blue);
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  /* Canvas */
+  .canvas-wrapper {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+
+  .canvas-controls {
+    padding: 16px 24px;
+    background: var(--hover-bg);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .control-btn {
+    padding: 8px 16px;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .control-btn:hover {
+    border-color: var(--google-blue);
+    color: var(--google-blue);
+  }
+
+  .canvas-area {
+    padding: 0;
+    min-height: auto;
+    position: relative;
+  }
+
+  /* Flow Container */
+  .flow-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  .flow-step {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 32px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+  }
+
+  .flow-step.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .step-number {
+    min-width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+
+  .flow-step.active .step-number {
+    background: var(--google-blue);
+    border-color: var(--google-blue);
+    color: white;
+  }
+
+  .step-content {
+    flex: 1;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px 24px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+
+  .step-content:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-color: var(--google-blue);
+  }
+
+  .flow-step.active .step-content {
+    border-color: var(--google-blue);
+    box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
+  }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .step-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .arrow-down {
+    width: 2px;
+    height: 40px;
+    background: var(--border-color);
+    margin-left: 23px;
+    position: relative;
+  }
+
+  .arrow-down::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--border-color);
+  }
+
+  .flow-step.active ~ .flow-step .arrow-down,
+  .flow-step.active .arrow-down {
+    background: var(--google-blue);
+  }
+
+  .flow-step.active ~ .flow-step .arrow-down::after,
+  .flow-step.active .arrow-down::after {
+    border-top-color: var(--google-blue);
+  }
+
+  /* Steps Grid */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .step-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 24px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .step-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--google-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 16px;
+  }
+
+  .step-card h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+  }
+
+  .step-card p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  /* Results */
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .result-card {
+    background: var(--google-blue);
+    color: white;
+    padding: 32px 24px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .result-number {
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  .result-label {
+    font-size: 13px;
+    opacity: 0.9;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 32px;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+    }
+
+    .tabs {
+      overflow-x: auto;
+      justify-content: flex-start;
+    }
+
+    .canvas-area {
+      padding: 20px;
+    }
+
+    .node {
+      font-size: 11px;
+      padding: 10px 12px;
+      max-width: 140px;
+    }
+
+    .central-node {
+      width: 160px;
+      height: 160px;
+      font-size: 13px;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero, .interactive-section {
+    animation: fadeInUp 0.6s ease-out;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="logo-section">
+      <div class="google-logo">
+        <span>B</span><span>l</span><span>a</span><span>k</span><span>e</span><span>M</span><span>a</span><span>s</span><span>s</span><span>o</span><span>n</span><span>i</span>
+      </div>
+      <span class="page-title">Spread of Activation</span>
+    </div>
+    <button class="back-btn" onclick="window.location.href='googleHomepage.html'">Back to Search</button>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Spread of Activation</h1>
+    <p class="hero-subtitle">Cognitive psychology meets design thinking</p>
+    <div class="definition-card">
+      <h3>How it works</h3>
+      <p>One idea activates related concepts in memory, forming connections that lead to intuitive, user-centered solutions. Click nodes below to explore my process.</p>
+    </div>
+  </div>
+
+  <!-- Interactive Section -->
+  <div class="interactive-section">
+    <div class="section-header">
+      <h2>Example Ideation Process:
+        <h3>
+        Real Goal: Increase Conversion and Click-Through Rate Through New Visual Email Campaing Concepts </h2>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('process')">Thought Map</button>
+      <button class="tab" onclick="switchTab('steps')">4 Steps</button>
+    </div>
+
+    <!-- Tab: Process -->
+    <div id="process" class="tab-content active">
+      <div class="canvas-wrapper">
+        <div class="canvas-controls">
+          <span style="font-size: 14px; color: var(--text-secondary);">Interactive Visualization</span>
+          <button class="control-btn" onclick="replayAnimation()">↻ Replay</button>
+        </div>
+        <div class="canvas-area">
+          <div class="flow-container">
+
+            <div class="flow-step">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <div class="step-title">Problem</div>
+                <div class="step-description">How can I increase email click-through & conversion rates?</div>
+              </div>
+            </div>
+
+            <div class="arrow-down"></div>
+
+            <div class="flow-step">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <div class="step-title">Strategy</div>
+                <div class="step-description">Build trust through familiar UI patterns users already know</div>
+              </div>
+            </div>
+
+            <div class="arrow-down"></div>
+
+            <div class="flow-step">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <div class="step-title">Recognition</div>
+                <div class="step-description">Apple Pay = trusted, secure payment method everyone recognizes</div>
+              </div>
+            </div>
+
+            <div class="arrow-down"></div>
+
+            <div class="flow-step">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <div class="step-title">Concept</div>
+                <div class="step-description">Use Apple Wallet visual design to market our coupons</div>
+              </div>
+            </div>
+
+            <div class="arrow-down"></div>
+
+            <div class="flow-step">
+              <div class="step-number">5</div>
+              <div class="step-content">
+                <div class="step-title">Personalization</div>
+                <div class="step-description">Recreate the Face ID unlock motion in an email visual to emphasize that the product reveal was uniquely “made for you.”</div>
+              </div>
+            </div>
+
+            <div class="arrow-down"></div>
+
+            <div class="flow-step">
+              <div class="step-number">6</div>
+              <div class="step-content">
+                <div class="step-title">Visual Design</div>
+                <div class="step-description"> Apple's Liquid glass design to showcase a new educational email banner for modern, tech-forward brand identity</div>
+              </div>
+            </div>
+
+            <div class="arrow-down"></div>
+
+            <div class="flow-step">
+              <div class="step-number">7</div>
+              <div class="step-content">
+                <div class="step-title">Result</div>
+                <div class="step-description">Familiar UI + Personalization = Higher engagement</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab: Steps -->
+    <div id="steps" class="tab-content">
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Identify Problem</h3>
+          <p>Define clear mission statements that encompass user pain points or clear goals you want you want to achieve</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Activate Concepts</h3>
+          <p>Explore universal concepts or familiar patterns users already trust</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Bridge Ideas</h3>
+          <p>Leverage System 1 processing — using intuitive, emotionally resonant cues and personalization to create immediate trust and connection, enhancing product marketing,</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>Test & Iterate</h3>
+          <p>Send to pre-purchase users to build trust. Then measure performnace KPI's and identify which components drove the strongest engagement and conversions. </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Tab Switching
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+
+      event.target.classList.add('active');
+      document.getElementById(tabName).classList.add('active');
+
+      if (tabName === 'process') {
+        setTimeout(animateSteps, 100);
+      }
+    }
+
+    // Animate flow steps
+    const flowSteps = document.querySelectorAll('.flow-step');
+
+    function animateSteps() {
+      flowSteps.forEach(step => {
+        step.classList.remove('visible', 'active');
+      });
+
+      flowSteps.forEach((step, index) => {
+        setTimeout(() => {
+          step.classList.add('visible');
+        }, index * 200);
+      });
+    }
+
+    // Click to activate step
+    flowSteps.forEach(step => {
+      step.addEventListener('click', function() {
+        flowSteps.forEach(s => s.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    function replayAnimation() {
+      animateSteps();
+    }
+
+    window.onload = animateSteps;
+  </script>
+
+</body>
+</html>

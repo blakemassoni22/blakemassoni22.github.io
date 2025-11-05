@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blake Massoni - Google Search</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    background: #fff;
+    color: #202124;
+  }
+
+  /* ---------- HEADER ---------- */
+  .search-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 25px;
+    border-bottom: 1px solid #dadce0;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .left-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+    flex: 1;
+  }
+
+  .top-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* ---------- LOGO ---------- */
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    padding-right: 30px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .logo span:nth-child(1) { color: #4285F4; }
+  .logo span:nth-child(2) { color: #EA4335; }
+  .logo span:nth-child(3) { color: #FBBC05; }
+  .logo span:nth-child(4) { color: #4285F4; }
+  .logo span:nth-child(5) { color: #34A853; }
+  .logo span:nth-child(6) { color: #EA4335; }
+  .logo span:nth-child(7) { color: #FBBC05; }
+  .logo span:nth-child(8) { color: #4285F4; }
+  .logo span:nth-child(9) { color: #34A853; }
+  .logo span:nth-child(10){ color: #EA4335; }
+  .logo span:nth-child(11){ color: #FBBC05; }
+  .logo span:nth-child(12){ color: #4285F4; }
+
+  /* ---------- SEARCH BOX ---------- */
+  .search-box {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #dfe1e5;
+    border-radius: 29px;
+    padding: 6px 18px;
+    max-width: 600px;
+    flex: 1;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 8px;
+  }
+
+  .search-box i { color: #5f6368; margin-right: 10px; }
+
+  /* ---------- APPS MENU ---------- */
+  .apps-menu {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 12px;
+  }
+
+  .apps-menu:hover {
+    background-color: rgba(0,0,0,0.04);
+  }
+
+  .apps-icon {
+    width: 20px;
+    height: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 6px);
+    grid-gap: 1px;
+    opacity: 0.6;
+  }
+
+  .apps-icon span {
+    width: 6px;
+    height: 6px;
+    background-color: #5f6368;
+    border-radius: 1px;
+  }
+
+  /* ---------- PROFILE ---------- */
+  .profile {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4a90e2, #34a853);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-top:12px;
+  }
+
+  .profile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 3px rgba(66,133,244,0.2);
+  }
+
+  /* ---------- TABS ---------- */
+  .tabs {
+    display: flex;
+    gap: 36px;
+    margin-top: 10px;
+    margin-left: 204px;
+    font-size: 0.9rem;
+    color: #5f6368;
+  }
+
+  .tabs a {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    padding-bottom: 8px;
+  }
+
+  .tabs a.active {
+    color: #1a73e8; /* UPenn Blue */
+    font-weight: 500;
+  }
+
+  .tabs a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #1a73e8; /* UPenn Blue underline */
+    border-radius: 2px;
+  }
+
+  /* ---------- RESULTS ---------- */
+  .results {
+    max-width: 2300px;
+    margin: 40px 228px;
+  }
+
+  .result { margin-bottom: 40px; }
+  .result a.title { font-size: 1.1rem; color: #1a0dab; text-decoration: none; }
+  .result a.title:hover { text-decoration: underline; }
+  .result .link { color: #006621; font-size: 0.9rem; margin-bottom: 5px; }
+  .result .snippet { color: #4d5156; font-size: 0.9rem; line-height: 1.4; }
+
+  /* ---------- PEOPLE ALSO ASK ---------- */
+  .people-also-ask {
+    margin-top: 60px;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .people-also-ask h3 {
+    margin: 0;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dadce0;
+    font-size: 1rem;
+    color: #202124;
+  }
+
+  .question {
+    padding: 15px 20px;
+    border-top: 1px solid #dadce0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .question:hover { background: #f1f3f4; }
+
+  .answer {
+    display: none;
+    padding: 0 20px 15px 20px;
+    color: #4d5156;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .caret { transition: transform 0.2s ease; }
+  .caret.rotate { transform: rotate(180deg); }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #dadce0;
+    color: #70757a;
+    font-size: 0.9rem;
+    margin-top: 50px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="search-header">
+    <div class="left-container">
+      <!-- Top row: logo + search -->
+      <div class="top-row">
+        <div class="logo" onclick="window.location.href='googleHomepage.html'">
+          <span>B</span><span>l</span><span>a</span><span>k</span><span>e</span>
+          <span>M</span><span>a</span><span>s</span><span>s</span><span>o</span><span>n</span><span>i</span>
+        </div>
+        <div class="search-box">
+          <i class="fas fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search a toolbar query here" />
+        </div>
+      </div>
+
+      <!-- Tabs below -->
+      <div class="tabs">
+        <a href="googleHomepage.html">Home</a>
+        <a href="Aboutme.html" class="active">About Me</a>
+        <a href="projects.html">Projects</a>
+        <a href="resume.html">Resume</a>
+      </div>
+    </div>
+
+    <!-- Apps menu and profile on the right -->
+    <div class="apps-menu" title="Google apps">
+      <div class="apps-icon">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="profile">B</div>
+  </div>
+
+  <!-- Results -->
+  <div class="results">
+    <div class="result">
+      <div class="link">blakemassoni.com › about</div>
+      <a href="aboutblakemassoni.html" class="title" target="_self">Blake Massoni - My Thinking Process</a>
+      <div class="snippet">
+        Through her work, Blake explores how familiar digital interfaces can serve as psychological anchors in marketing...
+      </div>
+    </div>
+
+    <div class="result">
+      <div class="link">linkedin.com/in/blakemassoni</div>
+      <a href="https://www.linkedin.com/in/blake-massoni-67b26a22a/" class="title" target="_blank">Blake Massoni | LinkedIn</a>
+      <div class="snippet">
+        View Blake’s profile on LinkedIn, 2025 graduate from the University of Pennsylvania...
+      </div>
+    </div>
+
+    <div class="result">
+      <div class="link">Blake's-Resume.net/experiences</div>
+      <a href="resume.html" class="title" target="_self">Blake Massoni - Resume</a>
+      <div class="snippet">
+        Learn more about Blake, her experiences, and educational background...
+      </div>
+    </div>
+
+    <!-- People Also Ask -->
+    <div class="people-also-ask">
+      <h3>People also ask</h3>
+      <div class="question">
+        <span>What does Blake Massoni specialize in?</span>
+        <i class="fas fa-caret-down caret"></i>
+      </div>
+      <div class="answer">
+        Blake focuses on the intersection of communication, consumer psycholgoy, UX design, and creative technology...
+      </div>
+      <div class="question">
+        <span>What is the Spread of Activation theory?</span>
+        <i class="fas fa-caret-down caret"></i>
+      </div>
+      <div class="answer">
+        The Spread of Activation is a cognitive psychology concept describing how related ideas in the brain trigger one another...
+      </div>
+      <div class="question">
+        <span>Where can I view Blake’s design work?</span>
+        <i class="fas fa-caret-down caret"></i>
+      </div>
+      <div class="answer">
+        You can explore Blake’s design work by clicking on the <strong>Projects</strong> tab.
+      </div>
+      <div class="question">
+        <span>What inspires Blake’s creative process?</span>
+        <i class="fas fa-caret-down caret"></i>
+      </div>
+      <div class="answer">
+        Blake's creative process draws inspiration from universally recognizable interfaces, associative psychology, and how design shapes user emotion and cognition.
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2025 Blake Massoni – My Portfolio
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // --- People Also Ask Toggle ---
+    document.querySelectorAll('.question').forEach(q => {
+      q.addEventListener('click', () => {
+        const answer = q.nextElementSibling;
+        const caret = q.querySelector('.caret');
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        caret.classList.toggle('rotate');
+      });
+    });
+
+    // --- Search Redirect Logic (false-positive safe) ---
+    const searchInput = document.querySelector('.search-box input');
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.toLowerCase().trim();
+
+        const searchMap = [
+          { keywords: ['home', 'homepage', 'back home'], page: 'googleHomepage.html' },
+          { keywords: ['about me', 'about blake', 'about'], page: 'Aboutme.html' },
+          { keywords: ['projects', 'my projects', "blake's projects", 'blake projects'], page: 'projects.html' },
+          { keywords: [
+              'skills', "blake's skills", 'resume', 'experience', 'experiences',
+              "blake's resume", "blake's experience", 'past jobs', 'past work'
+            ], page: 'resume.html' }
+        ];
+
+        let matched = false;
+
+        // Normalize text by replacing smart quotes and punctuation
+        const cleanQuery = query
+          .replace(/[''']/g, "'")
+          .replace(/[""]/g, '"')
+          .replace(/[.,!?]/g, '');
+
+        outerLoop:
+        for (const item of searchMap) {
+          for (const keyword of item.keywords) {
+            const cleanKeyword = keyword.toLowerCase().replace(/[''']/g, "'");
+            const regex = new RegExp(`\\b${cleanKeyword}\\b`, 'i'); // exact word or phrase match
+
+            if (regex.test(cleanQuery)) {
+              window.location.href = item.page;
+              matched = true;
+              break outerLoop;
+            }
+          }
+        }
+
+        if (!matched) alert(`No results found for "${searchInput.value}"`);
+      }
+    });
+  </script>
+</body>
+</html>
